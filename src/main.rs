@@ -1,4 +1,6 @@
 use std::fs;
+#[cfg(unix)]
+use std::os::unix::fs::MetadataExt;
 use std::path::Path;
 use chrono::{DateTime, Local};
 use serde::{Serialize, Deserialize};
@@ -96,12 +98,12 @@ fn list_files_attr(file_path: &Path, ls_format: &str) {
         }
         "table" => {
             #[cfg(unix)]
-            println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:<10} {:<10} {}", "Type", "Mode", "Created", "Modified", "Owner", "Group", "Mode", "Size", "Filename");
+            println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:<10} {}", "Type", "Mode", "Created", "Modified", "Owner", "Group", "Mode", "Size", "Filename");
             #[cfg(windows)]
             println!("{:<10} {:<10} {:<20} {:<20} {:<10} {}", "Type", "Mode", "Created", "Modified", "Size", "Filename");
             #[cfg(unix)]
             println!(
-                "{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:<10} {:<10} {:?}",
+                "{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:<10} {:?}",
                 file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group, file_info.mode, file_info.size, file_info.filename
             );
             #[cfg(windows)]
