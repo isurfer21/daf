@@ -81,8 +81,8 @@ fn list_files_attr(file_path: &Path, ls_format: &str) {
         "columns" => {
             #[cfg(unix)]
             println!(
-                "Filename: {:?}   Size: {}   Type: {}   Mode: {}   Created: {}   Modified: {}   Owner: {}   Group: {}   Mode: {}",
-                file_info.filename, file_info.size, file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group, file_info.mode
+                "Filename: {:?}   Size: {}   Type: {}   Mode: {}   Created: {}   Modified: {}   Owner: {}   Group: {}",
+                file_info.filename, file_info.size, file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group
             );
             #[cfg(windows)]
             println!("Filename: {:?}   Size: {}   Type: {}   Mode: {}   Created: {}   Modified: {}", file_info.filename, file_info.size, file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"));
@@ -90,21 +90,21 @@ fn list_files_attr(file_path: &Path, ls_format: &str) {
         "list" => {
             #[cfg(unix)]
             println!(
-                "Filename: {:?}\nSize: {}\nType: {}\nMode: {}\nCreated: {}\nModified: {}\nOwner: {}\nGroup: {}\nMode: {}",
-                file_info.filename, file_info.size, file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group, file_info.mode
+                "Filename: {:?}\nSize: {}\nType: {}\nMode: {}\nCreated: {}\nModified: {}\nOwner: {}\nGroup: {}",
+                file_info.filename, file_info.size, file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group
             );
             #[cfg(windows)]
             println!("Filename: {:?}\nSize: {}\nType: {}\nMode: {}\nCreated: {}\nModified: {}\n", file_info.filename, file_info.size, file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"));
         }
         "table" => {
             #[cfg(unix)]
-            println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:<10} {}", "Type", "Mode", "Created", "Modified", "Owner", "Group", "Mode", "Size", "Filename");
+            println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {}", "Type", "Mode", "Created", "Modified", "Owner", "Group", "Size", "Filename");
             #[cfg(windows)]
             println!("{:<10} {:<10} {:<20} {:<20} {:<10} {}", "Type", "Mode", "Created", "Modified", "Size", "Filename");
             #[cfg(unix)]
             println!(
-                "{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:<10} {:?}",
-                file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group, file_info.mode, file_info.size, file_info.filename
+                "{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {:?}",
+                file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.owner, file_info.group, file_info.size, file_info.filename
             );
             #[cfg(windows)]
             println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:?}", file_info.r#type, file_info.mode, file_info.created.format("%Y-%m-%d %H:%M:%S"), file_info.modified.format("%Y-%m-%d %H:%M:%S"), file_info.size, file_info.filename);
@@ -143,12 +143,12 @@ fn list_files_and_dirs(dir_path: &Path, ls_format: &str) {
         }
         "table" => {
             #[cfg(unix)]
-            println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {}", "Type", "Mode", "Created", "Modified", "Size", "Owner", "Group", "Filename");
+            println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {}", "Type", "Mode", "Created", "Modified", "Owner", "Group", "Size", "Filename");
             #[cfg(windows)]
             println!("{:<10} {:<10} {:<20} {:<20} {:<10} {}", "Type", "Mode", "Created", "Modified", "Size", "Filename");
             for entry in &entries {
                 #[cfg(unix)]
-                println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {}", entry.r#type, entry.mode, entry.created.format("%Y-%m-%d %H:%M:%S"), entry.modified.format("%Y-%m-%d %H:%M:%S"), entry.size, entry.owner, entry.group, entry.filename);
+                println!("{:<10} {:<10} {:<20} {:<20} {:<10} {:<10} {:<10} {}", entry.r#type, entry.mode, entry.created.format("%Y-%m-%d %H:%M:%S"), entry.modified.format("%Y-%m-%d %H:%M:%S"), entry.owner, entry.group, entry.size, entry.filename);
                 #[cfg(windows)]
                 println!("{:<10} {:<10} {:<20} {:<20} {:<10} {}", entry.r#type, entry.mode, entry.created.format("%Y-%m-%d %H:%M:%S"), entry.modified.format("%Y-%m-%d %H:%M:%S"), entry.size, entry.filename);
             }
@@ -160,7 +160,7 @@ fn list_files_and_dirs(dir_path: &Path, ls_format: &str) {
 
 fn main() {
     let matches = App::new("Directories & Files (daf)")
-        .version("1.0.0")
+        .version("1.0.1")
         .author("Abhishek Kumar <isurfer21@gmail.com>")
         .about("Lists the directory and files with or without attributes as opted.")
         .arg(
