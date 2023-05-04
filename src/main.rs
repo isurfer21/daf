@@ -157,7 +157,7 @@ fn list_files_and_dirs(dir_path: &Path, ls_format: &str) {
 }
 
 fn main() {
-    let matches = App::new("Directories & Files (df)")
+    let matches = App::new("Directories & Files (daf)")
         .version("1.0.0")
         .author("Abhishek Kumar <isurfer21@gmail.com>")
         .about("Lists the directory and files with or without attributes as opted.")
